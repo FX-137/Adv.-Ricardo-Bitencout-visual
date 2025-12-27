@@ -13,20 +13,27 @@ const Footer: React.FC<FooterProps> = () => {
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
       <motion.div 
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-        className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} 
+        className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} 
       />
       <motion.div 
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
-        className="relative bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[80vh] flex flex-col"
+        initial={{ opacity: 0, y: 30, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 30, scale: 0.95 }}
+        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden border border-white/10"
       >
-        <div className="p-6 border-b flex justify-between items-center bg-slate-50 rounded-t-xl">
-          <h2 className="text-xl font-bold text-[#0f172a] font-serif">{title}</h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-red-500 transition-colors">
+        <div className="p-6 border-b flex justify-between items-center bg-slate-50">
+          <h2 className="text-xl font-bold text-[#0f172a] font-serif tracking-tight">{title}</h2>
+          <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-red-50 text-slate-400 hover:text-red-500 transition-all">
             <i className="fas fa-times"></i>
           </button>
         </div>
-        <div className="p-8 overflow-y-auto text-sm text-slate-600 leading-relaxed text-justify">
-          {content}
+        <div className="p-8 md:p-12 overflow-y-auto text-sm text-slate-600 leading-relaxed text-justify font-light space-y-4">
+          {content.split('\n').map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
+          ))}
+        </div>
+        <div className="p-6 bg-slate-50 border-t text-center">
+          <button onClick={onClose} className="bg-[#0f172a] text-white px-8 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-colors">
+            Fechar
+          </button>
         </div>
       </motion.div>
     </div>
@@ -44,14 +51,14 @@ const Footer: React.FC<FooterProps> = () => {
           <div className="flex flex-wrap justify-center gap-8 font-bold uppercase tracking-[0.2em]">
             <button 
               onClick={() => setActiveModal('terms')}
-              className="hover:text-[#7a2626] transition-colors"
+              className="hover:text-amber-500 transition-colors"
             >
               Termos de Uso
             </button>
             <span className="text-slate-800">|</span>
             <button 
               onClick={() => setActiveModal('privacy')}
-              className="hover:text-[#7a2626] transition-colors"
+              className="hover:text-amber-500 transition-colors"
             >
               Política de Privacidade
             </button>
@@ -59,7 +66,7 @@ const Footer: React.FC<FooterProps> = () => {
         </div>
       </div>
 
-      {/* Tier 2: FCL Credits (Pure Black) */}
+      {/* Tier 2: FCL Credits */}
       <div className="bg-black py-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-center items-center gap-4 text-[9px] font-bold uppercase tracking-[0.4em]">
            <div className="flex items-center gap-4">
@@ -74,7 +81,7 @@ const Footer: React.FC<FooterProps> = () => {
                 className="flex items-center gap-2 text-slate-500 hover:text-[#25D366] transition-colors group"
               >
                 <i className="fab fa-whatsapp text-[#25D366] text-xs"></i>
-                <span className="group-hover:text-white">CONTATO</span>
+                <span className="group-hover:text-white transition-colors">CONTATO</span>
               </a>
            </div>
         </div>
@@ -85,14 +92,21 @@ const Footer: React.FC<FooterProps> = () => {
           <Modal 
             title="Termos de Uso" 
             onClose={() => setActiveModal(null)}
-            content="Este site tem caráter meramente informativo e não constitui consulta jurídica formal. Ao navegar por este portal, você concorda que o conteúdo aqui exposto visa aproximar o escritório de seus clientes e parceiros, seguindo rigorosamente o código de ética da OAB. Todas as informações compartilhadas nos formulários são tratadas com sigilo profissional."
+            content={`Este site tem caráter meramente informativo e não constitui consulta jurídica formal.
+            Ao navegar por este portal, você concorda que o conteúdo aqui exposto visa aproximar o escritório de seus clientes e parceiros, seguindo rigorosamente o código de ética da OAB.
+            Nenhuma informação contida neste site deve ser interpretada como aconselhamento jurídico definitivo para o seu caso específico sem uma consulta prévia.
+            Todo o conteúdo intelectual, marcas e logos são de propriedade exclusiva de Ricardo Bitencourt Advocacia.`}
           />
         )}
         {activeModal === 'privacy' && (
           <Modal 
             title="Política de Privacidade" 
             onClose={() => setActiveModal(null)}
-            content="Protegemos sua privacidade em conformidade com a LGPD. Coletamos apenas os dados necessários para agendamento de consultas quando solicitados voluntariamente pelo usuário via canais de atendimento oficiais (WhatsApp e E-mail). Não compartilhamos suas informações com terceiros sem consentimento expresso e utilizamos cookies apenas para melhorar a sua experiência de navegação."
+            content={`Protegemos sua privacidade em conformidade com a Lei Geral de Proteção de Dados (LGPD).
+            Coletamos apenas os dados estritamente necessários para o agendamento de consultas quando fornecidos voluntariamente via WhatsApp ou E-mail.
+            Não compartilhamos seus dados pessoais com terceiros sob nenhuma circunstância sem seu consentimento expresso.
+            Utilizamos cookies técnicos mínimos para garantir o funcionamento adequado do site e medir o desempenho básico de navegação de forma anônima.
+            Você tem o direito de solicitar a exclusão de qualquer dado fornecido a qualquer momento através de nossos canais oficiais.`}
           />
         )}
       </AnimatePresence>

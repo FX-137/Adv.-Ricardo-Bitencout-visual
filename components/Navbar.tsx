@@ -34,10 +34,11 @@ const Navbar: React.FC<NavbarProps> = ({ mode }) => {
           <a 
             href="https://wa.me/5551992496479?text=Olá,%20Dr.%20Ricardo.%20Gostaria%20de%20agendar%20uma%20consulta." 
             target="_blank"
-            className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2.5 rounded-sm text-[11px] font-bold uppercase tracking-widest flex items-center gap-2 shadow-lg transition-all border border-transparent hover:border-white/20"
+            className="bg-[#25D366] hover:bg-[#128C7E] text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-sm text-[10px] sm:text-[11px] font-bold uppercase tracking-widest flex items-center gap-2 shadow-lg transition-all border border-transparent hover:border-white/20"
           >
             <i className="fab fa-whatsapp text-sm"></i>
-            <span>Agendar Consulta</span>
+            <span className="hidden xs:inline">Agendar Consulta</span>
+            <span className="xs:hidden">Agendar</span>
           </a>
         </div>
       </div>
