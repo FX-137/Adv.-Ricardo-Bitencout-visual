@@ -34,22 +34,18 @@ const FloatingAIChat: React.FC<FloatingAIChatProps> = ({ mode }) => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: userMsg,
+        contents: [{ parts: [{ text: userMsg }] }],
         config: {
-          systemInstruction: `Você é a inteligência artificial do escritório de advocacia Ricardo Bitencourt. 
-          Seu tom é extremamente formal, jurídico, mas acolhedor. 
-          Mencione que o Dr. Ricardo Bitencourt e sua equipe atendem em Porto Alegre/RS.
-          Áreas: Civil, Família, Trabalhista, Imobiliário.
-          Local: Rua Senhor dos Passos, 372 - Sala 701.
-          Aviso: Você é informativo, não substitui consulta com advogado.`,
-          temperature: 0.5
+          systemInstruction: 'Você é a inteligência artificial do escritório de advocacia Ricardo Bitencourt. Seu tom é formal e jurídico, mas acolhedor. Mencione que atendemos em Porto Alegre/RS na Rua Senhor dos Passos, 372. Áreas: Civil, Família, Trabalhista, Imobiliário. Você é informativo e não substitui uma consulta jurídica formal.',
+          temperature: 0.7,
         }
       });
 
-      const aiText = response.text || 'Lamentamos, não conseguimos processar sua mensagem agora.';
+      const aiText = response.text || 'Lamentamos, ocorreu um erro na conexão. Por favor, tente novamente.';
       setMessages(prev => [...prev, { role: 'ai', text: String(aiText) }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'ai', text: 'O sistema de inteligência está temporariamente indisponível. Por favor, utilize o botão de WhatsApp para falar conosco.' }]);
+      console.error('AI Error:', error);
+      setMessages(prev => [...prev, { role: 'ai', text: 'O sistema de inteligência está temporariamente indisponível. Por favor, utilize o botão de WhatsApp para contato direto.' }]);
     } finally {
       setIsLoading(false);
     }
@@ -85,8 +81,8 @@ const FloatingAIChat: React.FC<FloatingAIChatProps> = ({ mode }) => {
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] p-4 rounded-2xl text-[13px] leading-relaxed ${
                     m.role === 'user' 
-                    ? 'bg-amber-600 text-white rounded-tr-none' 
-                    : 'bg-white text-slate-800 border border-slate-200 rounded-tl-none'
+                    ? 'bg-amber-600 text-white rounded-tr-none shadow-md' 
+                    : 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-sm'
                   }`}>
                     {m.text}
                   </div>
@@ -104,19 +100,19 @@ const FloatingAIChat: React.FC<FloatingAIChatProps> = ({ mode }) => {
             </div>
 
             <div className="p-6 border-t bg-white">
-              <div className="flex items-center space-x-3 bg-slate-50 rounded-xl px-4 py-2 border border-slate-200 focus-within:border-amber-600/50">
+              <div className="flex items-center space-x-3 bg-slate-50 rounded-xl px-4 py-2 border border-slate-200 focus-within:border-amber-600/50 focus-within:ring-2 focus-within:ring-amber-600/5 transition-all">
                 <input
                   type="text"
-                  placeholder="Digite sua dúvida aqui..."
+                  placeholder="Digite sua dúvida..."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  className="flex-1 text-sm bg-transparent border-none focus:ring-0 py-2"
+                  onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                  className="flex-1 text-sm bg-transparent border-none focus:ring-0 py-2 outline-none"
                 />
                 <button 
                   onClick={handleSendMessage}
                   disabled={isLoading || !inputValue.trim()}
-                  className="text-amber-600 disabled:text-slate-300 hover:scale-110 transition-transform"
+                  className="text-amber-600 disabled:text-slate-300 hover:scale-110 active:scale-95 transition-all"
                 >
                   <i className="fas fa-paper-plane"></i>
                 </button>
@@ -128,9 +124,13 @@ const FloatingAIChat: React.FC<FloatingAIChatProps> = ({ mode }) => {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-xl transition-all duration-500 overflow-hidden relative group ${isOpen ? 'bg-slate-900 rotate-90' : 'bg-amber-600 hover:scale-105 active:scale-95'}`}
+        aria-label="Chat com IA"
+        className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-xl transition-all duration-500 relative group ${isOpen ? 'bg-slate-900 rotate-90' : 'bg-amber-600 hover:scale-110 active:scale-95'}`}
       >
         <i className={`fas ${isOpen ? 'fa-times' : 'fa-headset'} text-white`}></i>
+        {!isOpen && (
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
+        )}
       </button>
     </div>
   );
