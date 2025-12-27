@@ -34,9 +34,9 @@ const FloatingAIChat: React.FC<FloatingAIChatProps> = ({ mode }) => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: [{ parts: [{ text: userMsg }] }],
+        contents: [{ parts: [{ text: String(userMsg) }] }],
         config: {
-          systemInstruction: 'Você é a inteligência artificial do escritório de advocacia Ricardo Bitencourt. Seu tom é formal e jurídico, mas acolhedor. Mencione que atendemos em Porto Alegre/RS na Rua Senhor dos Passos, 372. Áreas: Civil, Família, Trabalhista, Imobiliário. Você é informativo e não substitui uma consulta jurídica formal.',
+          systemInstruction: 'Você é a inteligência artificial do escritório de advocacia Ricardo Bitencourt. Seu tom é formal e jurídico, mas acolhedor. Atendemos em Porto Alegre/RS na Rua Senhor dos Passos, 372. Áreas: Civil, Família, Trabalhista, Imobiliário. Você é informativo e não substitui uma consulta jurídica formal.',
           temperature: 0.7,
         }
       });
@@ -84,7 +84,7 @@ const FloatingAIChat: React.FC<FloatingAIChatProps> = ({ mode }) => {
                     ? 'bg-amber-600 text-white rounded-tr-none shadow-md' 
                     : 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-sm'
                   }`}>
-                    {m.text}
+                    {String(m.text)}
                   </div>
                 </div>
               ))}
