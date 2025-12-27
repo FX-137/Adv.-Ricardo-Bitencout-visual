@@ -11,7 +11,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingAIChat from './components/FloatingAIChat';
 import CookieConsent from './components/CookieConsent';
-import WhatsAppButton from './components/WhatsAppButton';
 
 const App: React.FC = () => {
   return (
@@ -32,7 +31,6 @@ const App: React.FC = () => {
       <Footer mode="enhanced" />
       
       <FloatingAIChat mode="enhanced" />
-      <WhatsAppButton />
       <CookieConsent />
     </div>
   );
