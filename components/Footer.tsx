@@ -53,7 +53,7 @@ const Footer: React.FC<FooterProps> = ({ mode }) => {
     <footer className="w-full bg-[#050505] pt-16 pb-8 border-t border-white/5 font-sans">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Linha Superior: Copyright à esquerda, Links à direita */}
+        {/* Linha Superior: Copyright e Links Legais */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
           <div className="text-gray-600 text-[10px] md:text-[11px] uppercase tracking-[0.1em] font-medium text-center md:text-left">
             &copy; {new Date().getFullYear()} Ricardo Bitencourt Advocacia. OAB/RS 00.000.
@@ -76,9 +76,9 @@ const Footer: React.FC<FooterProps> = ({ mode }) => {
           </div>
         </div>
 
-        {/* Linha Inferior: Créditos FCL e Contato com gap reduzido */}
-        <div className="flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-black text-gray-700 border-t border-white/5 pt-10">
-          <div className="flex items-center gap-1.5">
+        {/* Linha Inferior: Créditos FCL e Contato (Aproximados) */}
+        <div className="flex items-center justify-center gap-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-black text-gray-700 border-t border-white/5 pt-10">
+          <div className="flex items-center gap-1">
             <span>CRIADO POR</span>
             <span className="text-gray-400">FCL</span>
           </div>
@@ -89,7 +89,7 @@ const Footer: React.FC<FooterProps> = ({ mode }) => {
             href="https://wa.me/5551992496479?text=Olá%20Fernando.%20Gostaria%20de%20saber%20mais%20sobre%20a%20criação%20de%20sites." 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-white transition-all group"
+            className="flex items-center gap-1 hover:text-white transition-all group"
           >
             <i className="fab fa-whatsapp text-[#25D366] text-sm group-hover:scale-110 transition-transform"></i>
             <span>CONTATO</span>
