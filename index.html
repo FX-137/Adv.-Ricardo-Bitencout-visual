@@ -7,34 +7,191 @@
     <meta name="description" content="Escritório de advocacia Ricardo Bitencourt em Porto Alegre. Especialista em Direito Civil, Trabalhista e Família.">
     <meta name="theme-color" content="#0f172a">
     <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqgNg6tmdfMGjKvZwZ9_OAHgbsAFhZU-Xvn0xVBVWn8vjfSLL8yKrA719T52D34a7PTDF9NkBPAeEvgjVMIl-kzvovEEnXzHm53h58IWlBKBEAEgYOxTwlFFSIGF5rqWXKyCxUL6inpjliN0r4VZJAlqDAMbpi07KKFty79vcBPvzjtRcaFNOH6O0rmNM/s64/Balan%C3%A7a.png">
+    
+    <!-- Bibliotecas Externas (CDNs) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root { scroll-behavior: smooth; }
-        body { font-family: 'Lato', sans-serif; background-color: #fcfcfc; overflow-x: hidden; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: #fcfcfc; color: #1e293b; margin: 0; }
         h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        .bg-navy { background-color: #0f172a; }
+        .text-amber { color: #d97706; }
         .animate-float { animation: float 4s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
-        #root { min-height: 100vh; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 4px; }
+        
+        /* Hidden Chat */
+        #chat-window.hidden { display: none; }
+        #cookie-banner.hidden { display: none; }
     </style>
+    
     <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
-    "framer-motion": "https://esm.sh/framer-motion@11.11.17?external=react,react-dom",
     "@google/genai": "https://esm.sh/@google/genai@1.34.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26"
   }
 }
 </script>
 </head>
-<body>
-    <div id="root"></div>
+<body class="selection:bg-amber-100 selection:text-amber-900">
+
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed top-0 w-full z-[150] transition-all duration-500 bg-[#0f172a] py-5 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex flex-col group cursor-default">
+                <span class="text-xl md:text-2xl font-bold text-white tracking-widest uppercase font-serif leading-tight">Ricardo Bitencourt</span>
+                <span class="text-[10px] text-amber-500 tracking-[0.3em] uppercase font-bold opacity-90">Advocacia & Consultoria</span>
+            </div>
+            <a href="https://wa.me/5551992496479?text=Olá,%20Dr.%20Ricardo.%20Gostaria%20de%20agendar%20uma%20consulta." 
+               class="bg-[#25D366] hover:bg-white hover:text-[#0f172a] text-white px-6 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest flex items-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5">
+                <i class="fab fa-whatsapp"></i> <span class="hidden sm:inline">Agendar Consulta</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="relative h-[85vh] flex items-center justify-center text-center px-4 overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-slate-950/80 z-10"></div>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6N_8IijcJZWy2OMKOkZObwyspo18qhECFMu9NtxAw54wjTg2WeEIfhiod2FUkstV66jAABtO9rTU01QB952Ze_nH92G5uNfSinUvgeLsMqQumdcR1kJWUL9TfRMfgiwwBDVA3sulby8Ku11Mq79GeOc44vTPWvy8KPr1gevMfgsoEdfh5s-qWEpRUCnY/s1600/Tribunal.jpg" 
+                 alt="Tribunal" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-20 max-w-4xl mx-auto">
+            <div class="w-20 h-1 bg-amber-500 mx-auto mb-8"></div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 uppercase font-serif tracking-tight">Justiça e Compromisso <br> com o seu Direito</h1>
+            <p class="text-lg md:text-xl text-slate-300 font-light max-w-2xl mx-auto mb-12">Atuação estratégica em causas complexas, pautada pela ética e excelência jurídica.</p>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="sobre" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="w-full lg:w-1/2 flex justify-center">
+                    <div class="relative p-2 w-full max-w-md">
+                        <div class="absolute inset-0 border-2 border-amber-600/40 rounded-sm translate-x-4 -translate-y-4"></div>
+                        <div class="relative z-10 bg-white p-1 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800" alt="Dr. Ricardo" class="w-full aspect-[4/5] object-cover object-top">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h4 class="text-amber-600 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Compromisso & Ética</h4>
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-8 font-serif">Nossa Missão é Garantir a sua Segurança Jurídica</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6 font-light text-justify">Com sólida formação e anos de experiência, o escritório oferece uma advocacia artesanal e estratégica, prevenindo riscos e resolvendo conflitos com excelência.</p>
+                    <div class="grid grid-cols-2 gap-12 border-t border-slate-100 pt-12">
+                        <div><strong class="block text-4xl text-amber-600 font-serif mb-1">15+</strong><span class="text-[10px] uppercase text-slate-500 font-bold tracking-[0.2em]">Anos de Experiência</span></div>
+                        <div><strong class="block text-4xl text-amber-600 font-serif mb-1">98%</strong><span class="text-[10px] uppercase text-slate-500 font-bold tracking-[0.2em]">Satisfação</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRACTICE AREAS -->
+    <section id="especialidades" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h4 class="text-amber-600 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Especialidades</h4>
+            <h2 class="text-3xl md:text-4xl font-bold text-[#0f172a] mb-20 font-serif uppercase tracking-widest">Áreas de Atuação</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-amber-600 text-left">
+                    <i class="fas fa-balance-scale text-amber-600 text-3xl mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 font-serif">Direito Civil</h3>
+                    <p class="text-slate-500 text-xs mb-8">Contratos, responsabilidade civil e proteção de bens.</p>
+                </div>
+                <div class="bg-white p-10 shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-amber-600 text-left">
+                    <i class="fas fa-users text-amber-600 text-3xl mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 font-serif">Família & Sucessões</h3>
+                    <p class="text-slate-500 text-xs mb-8">Divórcios, inventários e planejamento sucessório.</p>
+                </div>
+                <div class="bg-white p-10 shadow-sm hover:shadow-xl transition-all border-b-4 border-transparent hover:border-amber-600 text-left">
+                    <i class="fas fa-briefcase text-amber-600 text-3xl mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 font-serif">Trabalhista</h3>
+                    <p class="text-slate-500 text-xs mb-8">Defesa técnica e consultoria preventiva empresarial.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & MAP -->
+    <section id="contato" class="py-24 bg-[#111] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-[#1a1a1a] rounded-xl overflow-hidden shadow-2xl border border-white/5">
+                <div class="p-10 text-center">
+                    <h2 class="text-amber-500 font-serif text-xl tracking-widest uppercase mb-4">Onde Estamos</h2>
+                    <h3 class="text-2xl font-bold mb-2">Rua Senhor dos Passos, 372 - Sala 701</h3>
+                    <p class="text-slate-400 text-xs uppercase tracking-widest mb-10">Centro Histórico - Porto Alegre/RS</p>
+                    <div class="w-full h-[400px] bg-white rounded-lg overflow-hidden mb-10">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.089856557876!2d-51.22359292446731!3d-30.033926874938837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197906353d7e35%3A0xe9c8e8d8f99e8293!2sR.%20Sr.%20dos%20Passos%2C%20372%20-%20Centro%20Hist%C3%B3rico%2C%20Porto%20Alegre%20-%20RS%2C%2090020-180!5e0!3m2!1spt-BR!2sbr!4v1709230000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <a href="https://maps.app.goo.gl/Bukf7foyGgraTWnU9" target="_blank" class="bg-amber-600 px-10 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all inline-block">Traçar Rota</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="w-full bg-[#050505] pt-16 pb-8 border-t border-white/5 font-sans">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                <div class="text-gray-600 text-[10px] uppercase tracking-widest font-medium">
+                    &copy; 2025 Ricardo Bitencourt Advocacia. OAB/RS 00.000.
+                </div>
+                <div class="flex items-center gap-6 text-gray-500 text-[10px] uppercase tracking-widest font-bold">
+                    <a href="#" class="hover:text-amber-500">Termos</a>
+                    <span class="opacity-10">|</span>
+                    <a href="#" class="hover:text-amber-500">Privacidade</a>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-black text-gray-700 border-t border-white/5 pt-10">
+                <div class="flex items-center gap-1">
+                    <span>CRIADO POR</span>
+                    <span class="text-gray-400">FCL</span>
+                </div>
+                <span class="opacity-10 text-xl font-light mx-1">|</span>
+                <a href="https://wa.me/5551992496479?text=Olá%20Fernando.%20Gostaria%20de%20saber%20mais%20sobre%20a%20criação%20de%20sites." 
+                   target="_blank" class="flex items-center gap-1.5 hover:text-white transition-all group">
+                    <i class="fab fa-whatsapp text-[#25D366] text-sm group-hover:scale-110"></i>
+                    <span>CONTATO</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING AI CHAT -->
+    <div id="ai-chat" class="fixed bottom-6 right-6 z-[200]">
+        <div id="chat-window" class="hidden mb-4 w-[360px] md:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all transform scale-95 opacity-0">
+            <div class="bg-[#0f172a] p-5 flex justify-between items-center text-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center"><i class="fas fa-gavel text-xs"></i></div>
+                    <span class="text-xs font-bold uppercase tracking-widest">Assistente Digital</span>
+                </div>
+                <button onclick="toggleChat()" class="text-white/50 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50 text-[13px] leading-relaxed">
+                <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-100 max-w-[85%]">Olá! Sou o assistente do Dr. Ricardo Bitencourt. Em que posso ajudar?</div>
+            </div>
+            <div class="p-4 border-t bg-white flex gap-2">
+                <input type="text" id="chat-input" placeholder="Sua dúvida jurídica..." class="flex-1 bg-slate-100 rounded-lg px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-amber-500">
+                <button onclick="sendMessage()" class="text-amber-600 p-2"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="w-14 h-14 bg-amber-600 text-white rounded-full shadow-2xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all">
+            <i class="fas fa-headset"></i>
+        </button>
+    </div>
+
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>
