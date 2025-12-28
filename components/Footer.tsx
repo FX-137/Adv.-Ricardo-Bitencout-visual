@@ -77,7 +77,7 @@ const Footer: React.FC<FooterProps> = ({ mode }) => {
         </div>
 
         {/* Linha Inferior: Centralizada com Créditos e Botão WhatsApp */}
-        <div className="flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-black text-gray-700 border-t border-white/5 pt-10">
+        <div className="flex items-center justify-center gap-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-black text-gray-700 border-t border-white/5 pt-10">
           <div className="flex items-center gap-2">
             <span>CRIADO POR</span>
             <span className="text-gray-400">FCL</span>
