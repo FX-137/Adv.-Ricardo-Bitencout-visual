@@ -76,20 +76,20 @@ const Footer: React.FC<FooterProps> = ({ mode }) => {
           </div>
         </div>
 
-        {/* Linha Inferior: Centralizada com Créditos e Botão WhatsApp aproximado */}
-        <div className="flex items-center justify-center gap-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-black text-gray-700 border-t border-white/5 pt-10">
+        {/* Linha Inferior: Créditos FCL e Contato com gap reduzido */}
+        <div className="flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-black text-gray-700 border-t border-white/5 pt-10">
           <div className="flex items-center gap-1.5">
             <span>CRIADO POR</span>
             <span className="text-gray-400">FCL</span>
           </div>
           
-          <span className="opacity-10 text-xl font-light mx-2">|</span>
+          <span className="opacity-10 text-xl font-light mx-1">|</span>
           
           <a 
             href="https://wa.me/5551992496479?text=Olá%20Fernando.%20Gostaria%20de%20saber%20mais%20sobre%20a%20criação%20de%20sites." 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-1 hover:text-white transition-all group"
+            className="flex items-center gap-1.5 hover:text-white transition-all group"
           >
             <i className="fab fa-whatsapp text-[#25D366] text-sm group-hover:scale-110 transition-transform"></i>
             <span>CONTATO</span>
