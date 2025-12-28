@@ -35,7 +35,7 @@ const CookieConsent: React.FC = () => {
                 <div className="text-left">
                   <p className="text-amber-500 font-bold text-xs uppercase tracking-widest mb-1">Privacidade & Cookies</p>
                   <p className="text-gray-300 text-[10px] leading-relaxed">
-                    Utilizamos cookies para personalizar sua experiência. Ao continuar, você concorda com nossos termos.
+                    Utilizamos cookies para personalizar sua experiência jurídica. Ao continuar, você concorda com nossos termos.
                   </p>
                 </div>
               </div>

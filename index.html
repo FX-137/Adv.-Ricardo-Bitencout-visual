@@ -5,314 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ricardo Bitencourt | Advocacia e Consultoria Jurídica</title>
     <meta name="description" content="Escritório de advocacia Ricardo Bitencourt em Porto Alegre. Especialista em Direito Civil, Trabalhista e Família.">
-    
     <meta name="theme-color" content="#0f172a">
     <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqgNg6tmdfMGjKvZwZ9_OAHgbsAFhZU-Xvn0xVBVWn8vjfSLL8yKrA719T52D34a7PTDF9NkBPAeEvgjVMIl-kzvovEEnXzHm53h58IWlBKBEAEgYOxTwlFFSIGF5rqWXKyCxUL6inpjliN0r4VZJAlqDAMbpi07KKFty79vcBPvzjtRcaFNOH6O0rmNM/s64/Balan%C3%A7a.png">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root { scroll-behavior: smooth; }
-        body { font-family: 'Lato', sans-serif; -webkit-font-smoothing: antialiased; background-color: #fcfcfc; color: #1e293b; overflow-x: hidden; }
+        body { font-family: 'Lato', sans-serif; background-color: #fcfcfc; overflow-x: hidden; margin: 0; padding: 0; }
         h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
-        
-        .nav-scrolled { background-color: rgba(15, 23, 42, 0.98); backdrop-filter: blur(12px); padding-top: 0.75rem; padding-bottom: 0.75rem; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); border-bottom: 1px solid rgba(217, 119, 6, 0.2); }
-        
-        .method-line::before { content: ''; position: absolute; top: 3rem; left: 10%; width: 80%; height: 1px; background: rgba(255,255,255,0.1); z-index: 0; }
-        @media (max-width: 768px) { .method-line::before { display: none; } }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #b49b67; border-radius: 4px; }
-
-        .modal-active { overflow: hidden; }
-        
-        /* IA Chat Animations */
-        .ai-chat-container { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(20px); opacity: 0; visibility: hidden; pointer-events: none; }
-        .ai-chat-container.active { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
-        
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-          100% { transform: translateY(0px); }
-        }
-        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+        #root { min-height: 100vh; }
     </style>
-
     <script type="importmap">
 {
   "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "framer-motion": "https://esm.sh/framer-motion@11.11.17?external=react,react-dom",
     "@google/genai": "https://esm.sh/@google/genai@1.34.0",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "framer-motion": "https://esm.sh/framer-motion@^12.23.26"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
 </head>
-<body class="selection:bg-amber-100 selection:text-amber-900">
-
-    <!-- NAVBAR -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-[#0f172a] py-5 border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex flex-col group cursor-default">
-                <span class="text-xl md:text-2xl font-bold text-white tracking-widest uppercase font-serif leading-tight">Ricardo Bitencourt</span>
-                <span class="text-[10px] text-amber-500 tracking-[0.3em] uppercase font-bold opacity-90">Advocacia & Consultoria</span>
-            </div>
-            <a href="https://wa.me/5551992496479?text=Olá,%20Dr.%20Ricardo.%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="bg-[#25D366] hover:bg-white hover:text-[#0f172a] text-white px-5 sm:px-8 py-2 sm:py-3 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest flex items-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5 active:scale-95">
-                <i class="fab fa-whatsapp text-sm"></i>
-                <span class="hidden xs:inline">Agendar Consulta</span>
-                <span class="xs:hidden">Agendar</span>
-            </a>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="relative h-[85vh] flex items-center justify-center text-center px-4 overflow-hidden pt-20">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-slate-950/80 z-10"></div>
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6N_8IijcJZWy2OMKOkZObwyspo18qhECFMu9NtxAw54wjTg2WeEIfhiod2FUkstV66jAABtO9rTU01QB952Ze_nH92G5uNfSinUvgeLsMqQumdcR1kJWUL9TfRMfgiwwBDVA3sulby8Ku11Mq79GeOc44vTPWvy8KPr1gevMfgsoEdfh5s-qWEpRUCnY/s1600/Tribunal.jpg" alt="Tribunal" class="w-full h-full object-cover">
-        </div>
-        <div class="relative z-20 max-w-4xl mx-auto">
-            <div class="w-20 h-1 bg-amber-500 mx-auto mb-8"></div>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight uppercase font-serif tracking-tight">Justiça e Compromisso <br/> com o seu Direito</h1>
-            <p class="text-lg md:text-xl text-slate-300 font-light max-w-2xl mx-auto mb-12">Atuação estratégica em causas complexas, pautada pela ética e excelência jurídica.</p>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="sobre" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-20">
-                <div class="w-full lg:w-1/2 flex justify-center">
-                    <div class="relative p-2 w-full max-w-md">
-                        <div class="absolute inset-0 border-2 border-amber-600/40 rounded-sm translate-x-4 -translate-y-4"></div>
-                        <div class="relative z-10 bg-white p-1 shadow-2xl">
-                            <div class="aspect-[4/5] overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800" alt="Ricardo Bitencourt" class="w-full h-full object-cover object-top">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <h4 class="text-amber-600 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Compromisso & Ética</h4>
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-8 font-serif leading-tight">Nossa Missão é Garantir a <br/> sua Segurança Jurídica</h2>
-                    <div class="space-y-6 text-slate-600 leading-relaxed text-sm md:text-base text-justify font-light">
-                        <p>Com sólida formação e anos de experiência nos tribunais, o escritório foi fundado com o propósito de oferecer uma advocacia artesanal e estratégica.</p>
-                        <p>Buscamos não apenas resolver conflitos, mas prevenir riscos, garantindo a paz de espírito necessária para que nossos clientes foquem no que realmente importa.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-12 border-t border-slate-100 mt-12 pt-12">
-                        <div><strong class="block text-4xl text-amber-600 font-serif mb-1">15+</strong><span class="text-[10px] uppercase text-slate-500 font-bold tracking-[0.2em]">Anos de Experiência</span></div>
-                        <div><strong class="block text-4xl text-amber-600 font-serif mb-1">98%</strong><span class="text-[10px] uppercase text-slate-500 font-bold tracking-[0.2em]">Índice de Satisfação</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- METHOD -->
-    <section class="py-24 bg-[#0f172a] text-white relative">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h4 class="text-amber-500/80 text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Nosso Método</h4>
-            <h2 class="text-4xl md:text-5xl font-bold mb-24 font-serif">A Jornada do seu Caso</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative max-w-6xl mx-auto method-line">
-                <div class="relative z-10 group">
-                    <div class="w-24 h-24 bg-[#b49b67] text-[#0f172a] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 group-hover:bg-white transition-all duration-500">
-                        <i class="fas fa-phone-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 font-serif">1. Contato</h3>
-                    <p class="text-slate-400 text-[13px] font-light">Agendamento rápido via canais oficiais.</p>
-                </div>
-                <div class="relative z-10 group">
-                    <div class="w-24 h-24 bg-[#b49b67] text-[#0f172a] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 group-hover:bg-white transition-all duration-500">
-                        <i class="fas fa-search text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 font-serif">2. Análise</h3>
-                    <p class="text-slate-400 text-[13px] font-light">Estudo detalhado de toda a documentação.</p>
-                </div>
-                <div class="relative z-10 group">
-                    <div class="w-24 h-24 bg-[#b49b67] text-[#0f172a] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 group-hover:bg-white transition-all duration-500">
-                        <i class="fas fa-gavel text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 font-serif">3. Estratégia</h3>
-                    <p class="text-slate-400 text-[13px] font-light">Definição da melhor tese jurídica.</p>
-                </div>
-                <div class="relative z-10 group">
-                    <div class="w-24 h-24 bg-[#b49b67] text-[#0f172a] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 group-hover:bg-white transition-all duration-500">
-                        <i class="fas fa-shield-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold mb-3 font-serif">4. Resultado</h3>
-                    <p class="text-slate-400 text-[13px] font-light">Foco total na resolução e segurança.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRACTICE AREAS -->
-    <section id="especialidades" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h4 class="text-amber-600 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Especialidades</h4>
-            <h2 class="text-3xl md:text-4xl font-bold text-[#0f172a] mb-6 font-serif uppercase tracking-widest">Áreas de Atuação Estratégica</h2>
-            <div class="w-16 h-1 bg-amber-500 mx-auto mb-20"></div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                <div class="bg-slate-50 p-10 shadow-sm hover:shadow-2xl transition-all border-b-4 border-transparent hover:border-amber-600 group">
-                    <div class="text-amber-600 mb-8"><i class="fas fa-balance-scale text-4xl"></i></div>
-                    <h3 class="text-xl font-bold text-[#0f172a] mb-4 font-serif">Direito Civil</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-8 h-12">Proteção de bens, elaboração de contratos complexos e responsabilidade civil.</p>
-                    <a href="#" class="text-amber-600 font-bold text-[9px] uppercase tracking-widest">Saiba Mais <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="bg-slate-50 p-10 shadow-sm hover:shadow-2xl transition-all border-b-4 border-transparent hover:border-amber-600 group">
-                    <div class="text-amber-600 mb-8"><i class="fas fa-users text-4xl"></i></div>
-                    <h3 class="text-xl font-bold text-[#0f172a] mb-4 font-serif">Direito de Família</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-8 h-12">Mediação de divórcios, inventários e planejamento sucessório com sigilo.</p>
-                    <a href="#" class="text-amber-600 font-bold text-[9px] uppercase tracking-widest">Saiba Mais <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="bg-slate-50 p-10 shadow-sm hover:shadow-2xl transition-all border-b-4 border-transparent hover:border-amber-600 group">
-                    <div class="text-amber-600 mb-8"><i class="fas fa-briefcase text-4xl"></i></div>
-                    <h3 class="text-xl font-bold text-[#0f172a] mb-4 font-serif">Direito Trabalhista</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-8 h-12">Defesa técnica para empregados e consultoria preventiva para empresas.</p>
-                    <a href="#" class="text-amber-600 font-bold text-[9px] uppercase tracking-widest">Saiba Mais <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- STAFF -->
-    <section class="py-24 bg-white text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <h4 class="text-amber-600 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Conheça nossos Profissionais</h4>
-            <h2 class="text-3xl md:text-4xl font-bold text-[#0f172a] mb-6 font-serif uppercase tracking-widest">Corpo Jurídico</h2>
-            <div class="w-16 h-1 bg-amber-500 mx-auto mb-20"></div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="group">
-                    <div class="relative overflow-hidden mb-6 rounded-sm shadow-xl aspect-[3/4]">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9prSrtTwayxMhMsj3V-5HAxirpjWagqAlxK86-Qtb8be9owQ8UImND5GE7eTvaMKcF5muwFUrnHoZi6TkRA56n_Ze-8yU0uYorUFsd6j6tnk_s2O4exD2p2ti3n5pIug26gLKk50TDvtPRcxWsqgG5FqIt5Bba8jFQoNnkU3yLfO0oKJWR8ikClYCdbU/s5184/Reinaldo%20Ferreira.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-[#0f172a] font-serif">Reinaldo Ferreira</h3>
-                    <p class="text-amber-600 text-[9px] uppercase font-bold tracking-widest">Advogado Associado</p>
-                </div>
-                <div class="group">
-                    <div class="relative overflow-hidden mb-6 rounded-sm shadow-xl aspect-[3/4]">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJF3dMUvIDG9z6eJkzOekT_9-Du_S9ysloriuIwU1mRgYS_MNUXk7dDHL6erbB5VzLdB28g3EQvT8quWQX4ZCUyGMzTrDifS7cfG41E8bL0F1QTwcuaWhCk6dcmKmuDlwy8WqT9CTu0MLHgChadM6KnTcHO1ov74uGhWM-oNrdV4bks6miA7zx2rNjQDM/s5000/Clarice%20Pereira.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-[#0f172a] font-serif">Clarice Pereira</h3>
-                    <p class="text-amber-600 text-[9px] uppercase font-bold tracking-widest">Advogada Sócia</p>
-                </div>
-                <div class="group">
-                    <div class="relative overflow-hidden mb-6 rounded-sm shadow-xl aspect-[3/4]">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUZXlS1SDPwGUQK2pfT2SXoX6M9DU_g7t0seIvdNlXMK3Ds3p810ah9xPHnXpXuL3RdCMcGAGK0zGXcS9gQQ5wx94ynL6HbRC9JOB_Cy8qpOphbWZ95iyapGL53vGXWMCkWPqS_MWZOIuwANPPrIsqBFm5LDbDA1Fby7KUUQWeDVEcsvtwzcPCFbIwAM4/s5863/Jeferson%20Rodrigues.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-[#0f172a] font-serif">Jeferson Rodrigues</h3>
-                    <p class="text-amber-600 text-[9px] uppercase font-bold tracking-widest">Advogado Especialista</p>
-                </div>
-                <div class="group">
-                    <div class="relative overflow-hidden mb-6 rounded-sm shadow-xl aspect-[3/4]">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkOrK3J-Fi5WoAER6Zgve-s7ootrXCeev7WnECMIIFkHVlCciD36BkvmU5Sz61SYZGwZTxqTB-tQjj7ub4StgSTJUPrHRXs_cMNMibPtu16lvcn9YK8dtqCrIJHUUqzJBIaVllWxCaBChXePipB-6OGvUQ14Hof6O5YhrZZhFGVlDjRvT3xe3u-fYaQZE/s6516/Silvia%20Marcondes.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-[#0f172a] font-serif">Silvia Marcondes</h3>
-                    <p class="text-amber-600 text-[9px] uppercase font-bold tracking-widest">Advogada Associada</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT & LOCATION -->
-    <section id="contato" class="py-24 bg-[#111111] text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto">
-                <a href="tel:+555133727235" class="bg-[#1a1a1a] p-10 rounded-2xl border border-white/5 text-center hover:border-amber-600/40 transition-all">
-                    <i class="fas fa-phone-alt text-amber-500 text-2xl mb-4"></i>
-                    <p class="text-slate-400 text-[9px] uppercase tracking-[0.3em] font-bold">Telefone</p>
-                    <p class="text-xl md:text-2xl font-bold font-serif">(51) 3372-7235</p>
-                </a>
-                <a href="mailto:contato@bitencourt.adv.br" class="bg-[#1a1a1a] p-10 rounded-2xl border border-white/5 text-center hover:border-amber-600/40 transition-all">
-                    <i class="fas fa-envelope text-amber-500 text-2xl mb-4"></i>
-                    <p class="text-slate-400 text-[9px] uppercase tracking-[0.3em] font-bold">E-mail</p>
-                    <p class="text-xl md:text-2xl font-bold font-serif">contato@bitencourt.adv.br</p>
-                </a>
-            </div>
-            <div class="max-w-4xl mx-auto bg-[#1a1a1a] rounded-sm overflow-hidden border border-white/5 shadow-2xl">
-                <div class="bg-[#7a2626] py-5 text-center"><h2 class="text-amber-400 font-serif tracking-[0.4em] font-bold uppercase">Onde Estamos</h2></div>
-                <div class="p-8 md:p-14 text-center">
-                    <h3 class="text-xl md:text-3xl font-bold mb-2 font-serif">Rua Senhor dos Passos, 372 - Sala 701</h3>
-                    <p class="text-amber-500 text-[11px] uppercase tracking-[0.5em] font-bold mb-12">CENTRO HISTÓRICO - PORTO ALEGRE/RS</p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.089856557876!2d-51.22359292446731!3d-30.033926874938837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197906353d7e35%3A0xe9c8e8d8f99e8293!2sR.%20Sr.%20dos%20Passos%2C%20372%20-%20Centro%20Hist%C3%B3rico%2C%20Porto%20Alegre%20-%20RS%2C%2090020-180!5e0!3m2!1spt-BR!2sbr!4v1709230000000" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="w-full">
-        <div class="bg-[#0c0c0c] border-t border-white/5 py-12 text-[10px] text-slate-500">
-            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-left leading-relaxed font-bold uppercase tracking-[0.2em]">
-                    &copy; 2024 Ricardo Bitencourt Advocacia. OAB/RS 00.000.
-                </div>
-                <div class="flex flex-wrap justify-center gap-8 font-bold uppercase tracking-[0.2em]">
-                    <button onclick="toggleModal('terms')" class="hover:text-amber-500 transition-colors">Termos de Uso</button>
-                    <span class="text-slate-800 hidden md:inline">|</span>
-                    <button onclick="toggleModal('privacy')" class="hover:text-amber-500 transition-colors">Política de Privacidade</button>
-                </div>
-            </div>
-        </div>
-        <div class="bg-black py-6 border-t border-white/5">
-            <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-center items-center gap-4 text-[9px] font-bold uppercase tracking-[0.4em]">
-               <div class="flex items-center gap-4">
-                  <span class="text-slate-600">CRIADO POR <span class="text-slate-400">FCL</span></span>
-                  <div class="w-[1px] h-3 bg-white/10 hidden sm:block"></div>
-                  <a href="https://wa.me/5551984252514" target="_blank" class="flex items-center gap-2 text-slate-500 hover:text-[#25D366] transition-colors">
-                    <i class="fab fa-whatsapp text-[#25D366] text-xs"></i> CONTATO
-                  </a>
-               </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- MODAL CONTAINER (LEGAL) -->
-    <div id="modal-backdrop" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] flex flex-col overflow-hidden">
-            <div class="p-6 border-b flex justify-between items-center bg-slate-50">
-                <h2 id="modal-title" class="text-xl font-bold font-serif text-[#0f172a]"></h2>
-                <button onclick="closeModal()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-red-50 text-slate-400 hover:text-red-500 transition-all">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="modal-body" class="p-8 overflow-y-auto text-sm text-slate-600 leading-relaxed text-justify space-y-4"></div>
-        </div>
-    </div>
-
-    <!-- AI CHAT FLOATING -->
-    <div class="fixed bottom-6 right-6 z-[70] flex flex-col items-end">
-        <div id="ai-chat-box" class="ai-chat-container mb-4 w-[340px] md:w-[400px] h-[500px] bg-white rounded-3xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden">
-            <div class="bg-[#0f172a] p-6 flex justify-between items-center text-white">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center"><i class="fas fa-gavel text-xs"></i></div>
-                    <div class="text-left">
-                        <p class="text-sm font-bold">Assistente Digital</p>
-                        <p class="text-[9px] text-amber-500 uppercase font-bold tracking-widest">Ricardo Bitencourt</p>
-                    </div>
-                </div>
-                <button onclick="toggleAIChat()" class="text-white/50 hover:text-white"><i class="fas fa-times"></i></button>
-            </div>
-            <div id="ai-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/50">
-                <div class="flex justify-start"><div class="bg-white p-4 rounded-2xl text-[13px] shadow-sm border border-slate-100">Como posso auxiliar em sua dúvida jurídica hoje?</div></div>
-            </div>
-            <div class="p-4 border-t bg-white">
-                <div class="flex items-center gap-2 bg-slate-100 rounded-xl px-4 py-1">
-                    <input id="ai-input" type="text" placeholder="Digite sua dúvida..." class="flex-1 bg-transparent border-none outline-none text-sm py-2">
-                    <button onclick="sendAIMessage()" class="text-amber-600 p-2 hover:scale-110 transition-transform"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </div>
-        <button onclick="toggleAIChat()" id="ai-toggle-btn" class="w-16 h-16 bg-amber-600 rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all animate-float">
-            <i class="fas fa-headset text-xl" id="ai-icon"></i>
-        </button>
-    </div>
-
+<body>
+    <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>
